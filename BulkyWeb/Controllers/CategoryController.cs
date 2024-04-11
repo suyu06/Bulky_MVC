@@ -9,7 +9,7 @@ namespace BulkyWeb.Controllers
         //inject class AppDbContext
         private readonly AppDbContext _appDbContext;
         public CategoryController(AppDbContext appDbContext) {
-            _appDbContext = appDbContext;
+            _appDbContext = appDbContext; 
         }
         public IActionResult Index()
         {
