@@ -8,13 +8,18 @@ namespace BulkyWeb.Controllers
     {
         //inject class AppDbContext
         private readonly AppDbContext _appDbContext;
-        public CategoryController(AppDbContext appDbContext) {
+        public CategoryController(AppDbContext appDbContext)
+        {
             _appDbContext = appDbContext; 
         }
         public IActionResult Index()
         {
             List<Category> objCategoryList = _appDbContext.Categories.ToList();
             return View(objCategoryList);
+        }
+        public IActionResult Create() 
+        {
+            return View();
         }
     }
 }
