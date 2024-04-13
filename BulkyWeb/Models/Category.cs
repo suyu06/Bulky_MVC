@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace BulkyWeb.Models
 {
@@ -10,7 +11,9 @@ namespace BulkyWeb.Models
 
         [Required]
         // means the value of this column could not be null.
+        [DisplayName("Category Name")]
         public string CategoryName { get; set; }
+        [DisplayName("Display Order")]
         public int DisplayOrder { get; set; }
    
 
