@@ -11,8 +11,10 @@ namespace BulkyWeb.Models
 
         [Required]
         // means the value of this column could not be null.
+        [MaxLength(55)]
         [DisplayName("Category Name")]
         public string CategoryName { get; set; }
+        [Range(1,100)]
         [DisplayName("Display Order")]
         public int DisplayOrder { get; set; }
    
