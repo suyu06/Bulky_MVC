@@ -24,6 +24,17 @@ namespace BulkyWeb.Controllers
         [HttpPost]
         public IActionResult Create(Category newCategory)
         {
+            if(newCategory.CategoryName == newCategory.DisplayOrder.ToString())
+                {
+                ModelState.AddModelError("DisplayOrder", 
+                    "the DisplayOrder cannot exactly match the CategroyName");
+                }
+            if (newCategory.CategoryName.ToLower() == "7")
+            {
+                ModelState.AddModelError("",
+                    "7 is an invalid value");
+            }
+
             if (ModelState.IsValid)
             {
                 _appDbContext.Add(newCategory);
