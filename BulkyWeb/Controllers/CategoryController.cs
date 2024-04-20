@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.Storage;
 using System.Linq;
 
 
+
 namespace BulkyWeb.Controllers
 {
     public class CategoryController : Controller
@@ -15,6 +16,8 @@ namespace BulkyWeb.Controllers
         {
             _appDbContext = appDbContext; 
         }
+
+    
         public IActionResult Index()
         {
             List<Category> objCategoryList = _appDbContext.Categories.ToList();
@@ -46,6 +49,7 @@ namespace BulkyWeb.Controllers
             }
             return View();
         }
+        [HttpGet]
         public IActionResult Edit(int? id)
         {
             if (id==null|| id == 0) {
@@ -71,5 +75,30 @@ namespace BulkyWeb.Controllers
             return View();
         }
 
+        public IActionResult Delete(int? id)
+        {
+            if (id == null || id == 0)
+            {
+                return NotFound();
+            }
+            Category? categoryFromDb = _appDbContext.Categories.Find(id);
+           
+            if (categoryFromDb == null)
+            {
+                return NotFound();
+            }
+            return View(categoryFromDb);
+        }
+        //[HttpPost, ActionName("Delete")]
+        [HttpPost]
+        public IActionResult Delete(Category newCategory)
+        {
+                        
+                _appDbContext.Remove(newCategory);
+                _appDbContext.SaveChanges();
+                return RedirectToAction("Index", "Category");
+           
+           
+        }
     }
 }
