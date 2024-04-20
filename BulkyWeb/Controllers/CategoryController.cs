@@ -61,17 +61,10 @@ namespace BulkyWeb.Controllers
         }
         [HttpPost]
         public IActionResult Edit(Category newCategory)
-        {
-            if (newCategory.CategoryName == newCategory.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("DisplayOrder",
-                    "the DisplayOrder cannot exactly match the CategroyName");
-            }
-            
-
+        {           
             if (ModelState.IsValid)
             {
-                _appDbContext.Add(newCategory);
+                _appDbContext.Update(newCategory);
                 _appDbContext.SaveChanges();
                 return RedirectToAction("Index", "Category");
             }
