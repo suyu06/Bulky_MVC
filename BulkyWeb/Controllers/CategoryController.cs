@@ -45,6 +45,7 @@ namespace BulkyWeb.Controllers
             {
                 _appDbContext.Add(newCategory);
                 _appDbContext.SaveChanges();
+                TempData[("success")] = "Category created successfully";
                 return RedirectToAction("Index", "Category");
             }
             return View();
@@ -68,8 +69,10 @@ namespace BulkyWeb.Controllers
         {           
             if (ModelState.IsValid)
             {
+                string name = newCategory.CategoryName;
                 _appDbContext.Update(newCategory);
                 _appDbContext.SaveChanges();
+                TempData[("success")] = name +" updated successfully";
                 return RedirectToAction("Index", "Category");
             }
             return View();
@@ -89,16 +92,27 @@ namespace BulkyWeb.Controllers
             }
             return View(categoryFromDb);
         }
-        //[HttpPost, ActionName("Delete")]
+
         [HttpPost]
         public IActionResult Delete(Category newCategory)
         {
-                        
-                _appDbContext.Remove(newCategory);
-                _appDbContext.SaveChanges();
-                return RedirectToAction("Index", "Category");
-           
-           
+            string name = newCategory.CategoryName;
+            _appDbContext.Remove(newCategory);
+            _appDbContext.SaveChanges();
+            TempData[("success")] = name + "deleted successfully";
+            return RedirectToAction("Index", "Category");
+
         }
+
+        //[HttpPost, ActionName("Delete")]
+        //public IActionResult DeletePost(int id)
+        //{
+        //    Category? categoryFromDb = _appDbContext.Categories.Find(id);
+        //    _appDbContext.Remove(categoryFromDb);
+        //    _appDbContext.SaveChanges();
+        //    TempData[("success")] = categoryFromDb.CategoryName + "deleted successfully";
+        //    return RedirectToAction("Index", "Category");
+
+        //}
     }
 }

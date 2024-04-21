@@ -1,4 +1,9 @@
 ﻿@model List<Category>
+@if (TempData["success"] !=null)
+{
+    <h2>@TempData["success"]</h2>
+    
+}
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -10,8 +15,8 @@
             </a>
         </div>
     </div>
-<table  class ="table table-bordered table-striped">
-    <thread>
+    <table class="table table-bordered table-striped">
+    <thead>
         <tr>
             <th>
                 Category Name
@@ -23,7 +28,7 @@
 
             </th>
         </tr>
-    </thread>
+    </thead>
     <tbody>
         @foreach (var obj in Model.OrderByDescending(obj=>obj.DisplayOrder)){
            <tr>

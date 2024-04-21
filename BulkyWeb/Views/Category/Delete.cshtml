@@ -9,12 +9,14 @@
         @*  <div asp-validation-summary="ModelOnly"></div> *@
         <div class="row mb-3 p-1">
             <label asp-for="CategoryName" class="p-0"></label>
-            <input asp-for="CategoryName" disabled class="form-control" />
+           @*  <input asp-for="CategoryName" disabled class="form-control" /> *@
+            <input asp-for="CategoryName" readonly class="form-control" />
             
         </div>
         <div class="row mb-3 p-1">
             <label asp-for="DisplayOrder" class="p-0"></label>
-            <input asp-for="DisplayOrder" disabled class="form-control" />
+            @* <input asp-for="DisplayOrder" disabled class="form-control" /> *@
+            <input asp-for="DisplayOrder" readonly class="form-control" />
             
         </div>
         <div class="row">
