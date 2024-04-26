@@ -26,8 +26,10 @@ namespace BulkyWebRazor_Temp.Pages.Categories
         }
         public IActionResult OnPost()
         {
+            string name = Category.CategoryName;
             _appDbContext.Remove(Category);
             _appDbContext.SaveChanges();
+            TempData[("success")] = name + " deleted successfully";
             return RedirectToPage("Index");
         }
 

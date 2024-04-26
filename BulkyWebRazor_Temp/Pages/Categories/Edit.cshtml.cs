@@ -27,8 +27,10 @@ namespace BulkyWebRazor_Temp.Pages.Categories
         {
             if (ModelState.IsValid) 
             {
+                string name = Category.CategoryName;
                 _appDbContext.Update(Category);
                 _appDbContext.SaveChanges();
+                TempData[("success")] = name + " updated successfully";
                 return RedirectToPage("Index");
             }
             return Page();          
