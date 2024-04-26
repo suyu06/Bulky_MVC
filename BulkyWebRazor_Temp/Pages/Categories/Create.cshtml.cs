@@ -11,8 +11,8 @@ namespace BulkyWebRazor_Temp.Pages.Categories
     {
         private readonly AppDbContext _appDbContext;
         //[BindProperty]
-        public Category Category { get; set; }
-       
+        public Category Category { get; set; }        
+
         public CreateModel(AppDbContext appDbContext)
         {
             _appDbContext = appDbContext;
