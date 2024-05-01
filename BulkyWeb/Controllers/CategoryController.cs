@@ -16,7 +16,7 @@ namespace BulkyWeb.Controllers
         {
             _appDbContext = appDbContext; 
         }
-
+        
     
         public IActionResult Index()
         {
@@ -66,14 +66,17 @@ namespace BulkyWeb.Controllers
         }
         [HttpPost]
         public IActionResult Edit(Category newCategory)
-        {           
+        {
+            
             if (ModelState.IsValid)
             {
-                string name = newCategory.CategoryName;
-                _appDbContext.Update(newCategory);
-                _appDbContext.SaveChanges();
-                TempData[("success")] = name +" updated successfully";
-                return RedirectToAction("Index", "Category");
+                    string name = newCategory.CategoryName;                    
+                    _appDbContext.Update(newCategory);
+                    _appDbContext.SaveChanges();
+                    TempData[("success")] = name + " updated successfully";
+                    return RedirectToAction("Index", "Category");
+             
+               
             }
             return View();
         }
