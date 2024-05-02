@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository
 {
-    public class CategroyRepository :Repository<Category>, InterfaceCategoryRepository
+    public class CategoryRepository :Repository<Category>, InterfaceCategoryRepository
     {
 
         private AppDbContext _db;
-        public CategroyRepository(AppDbContext db):base(db)
+        public CategoryRepository(AppDbContext db):base(db)
         {
             _db = db;
         }
