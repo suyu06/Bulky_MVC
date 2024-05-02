@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Bulky.DataAccess.Repository.InterfaceRepository
 {
-    internal interface IRepository<T> where T : class
+    public interface IRepository<T> where T : class
     {
         // get all categories data
         IEnumerable<T> GetAll();
