@@ -1,7 +1,7 @@
-﻿using Bulky.Models;
+﻿using BulkyBook.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bulky.DataAccess.Data
+namespace BulkyBook.DataAccess.Data
 {
     public class AppDbContext :DbContext
     {
@@ -9,7 +9,7 @@ namespace Bulky.DataAccess.Data
         {
 
         }
-        // create table Categories in the db Bulky
+        // create table Categories in the db BulkyBook
         public DbSet<Category> Categories { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
