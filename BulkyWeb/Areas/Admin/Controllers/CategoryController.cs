@@ -7,8 +7,9 @@ using System.Linq;
 
 
 
-namespace BulkyBookWeb.Controllers
+namespace BulkyBookWeb.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         //inject class AppDbContext
@@ -17,17 +18,17 @@ namespace BulkyBookWeb.Controllers
         private readonly IUnitOfWork _unitOfWork;
         public CategoryController(IUnitOfWork unitOfWork)
         {
-           // _categoryRepo = appDbContext; 
-           _unitOfWork = unitOfWork;
+            // _categoryRepo = appDbContext; 
+            _unitOfWork = unitOfWork;
         }
-        
-    
+
+
         public IActionResult Index()
         {
             List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
             return View(objCategoryList);
         }
-        public IActionResult Create() 
+        public IActionResult Create()
         {
             return View();
         }
@@ -49,7 +50,7 @@ namespace BulkyBookWeb.Controllers
             {
                 _unitOfWork.Category.Add(newCategory);
                 _unitOfWork.Save();
-                TempData[("success")] = "New Category created successfully";
+                TempData["success"] = "New Category created successfully";
                 return RedirectToAction("Index", "Category");
             }
             return View();
@@ -57,13 +58,15 @@ namespace BulkyBookWeb.Controllers
         [HttpGet]
         public IActionResult Edit(int? id)
         {
-            if (id==null|| id == 0) {
+            if (id == null || id == 0)
+            {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u=>u.Id==id);
+            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
             //Category? categoryFromDb2 = _appDbContext.Categories.FirstOrDefault(obj=>obj.Id==id);
             // Category? categoryFromDb3 = _appDbContext.Categories.Where(obj=>obj.Id == id).FirstOrDefault();
-            if (categoryFromDb==null) {
+            if (categoryFromDb == null)
+            {
                 return NotFound();
             }
             return View(categoryFromDb);
@@ -71,16 +74,16 @@ namespace BulkyBookWeb.Controllers
         [HttpPost]
         public IActionResult Edit(Category newCategory)
         {
-            
+
             if (ModelState.IsValid)
             {
-                    string name = newCategory.CategoryName;
+                string name = newCategory.CategoryName;
                 _unitOfWork.Category.Update(newCategory);
                 _unitOfWork.Save();
-                    TempData[("success")] = name + " updated successfully";
-                    return RedirectToAction("Index", "Category");
-             
-               
+                TempData["success"] = name + " updated successfully";
+                return RedirectToAction("Index", "Category");
+
+
             }
             return View();
         }
@@ -92,7 +95,7 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
             Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-           
+
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -106,7 +109,7 @@ namespace BulkyBookWeb.Controllers
             string name = newCategory.CategoryName;
             _unitOfWork.Category.Remove(newCategory);
             _unitOfWork.Save();
-            TempData[("success")] = name + " deleted successfully";
+            TempData["success"] = name + " deleted successfully";
             return RedirectToAction("Index", "Category");
 
         }
