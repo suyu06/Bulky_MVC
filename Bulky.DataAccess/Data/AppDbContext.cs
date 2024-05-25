@@ -19,7 +19,7 @@ namespace BulkyBook.DataAccess.Data
                 new Category {Id = 2, CategoryName = "SciFi", DisplayOrder = 2 },
                 new Category {Id = 3, CategoryName = "History", DisplayOrder =3 }
                 );
-            modelBuilder.Entity<Category>().HasData(
+            modelBuilder.Entity<Product>().HasData(
                 new Product
                 {
                     Id = 1,
