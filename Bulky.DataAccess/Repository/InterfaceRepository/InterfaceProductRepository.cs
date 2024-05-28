@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BulkyBook.DataAccess.Repository.InterfaceRepository
 {
-    public interface InterfaceCategoryRepository : IRepository<Category>
+    public interface InterfaceProductRepository : IRepository<Product>
     {
-        void Update(Category category);
+        void Update(Product obj);
         //void Save();
     }
 }
