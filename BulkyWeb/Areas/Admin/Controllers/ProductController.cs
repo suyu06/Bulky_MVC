@@ -10,48 +10,48 @@ using System.Linq;
 namespace BulkyBookWeb.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class CategoryController : Controller
+    public class ProductController : Controller
     {
         //inject class AppDbContext
         //private readonly AppDbContext _appDbContext;
-        //private readonly InterfaceCategoryRepository  _categoryRepo;
+        //private readonly InterfaceProductRepository  _productRepo;
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork unitOfWork)
+        public ProductController(IUnitOfWork unitOfWork)
         {
-            // _categoryRepo = appDbContext; 
+            // _productRepo = appDbContext; 
             _unitOfWork = unitOfWork;
         }
 
 
         public IActionResult Index()
         {
-            List<Category> objCategoryList = _unitOfWork.Category.GetAll().ToList();
-            return View(objCategoryList);
+            List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            return View(objProductList);
         }
         public IActionResult Create()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Category newCategory)
+        public IActionResult Create(Product newProduct)
         {
-            if (newCategory.CategoryName == newCategory.DisplayOrder.ToString())
-            {
-                ModelState.AddModelError("DisplayOrder",
-                    "the DisplayOrder cannot exactly match the CategroyName");
-            }
-            //    if (newCategory.CategoryName.ToLower() == "7")
-            //    {
-            //        ModelState.AddModelError("",
-            //            "7 is an invalid value");
-            //    }
+            //if (newProduct.ProductName == newProduct.DisplayOrder.ToString())
+            //{
+            //    ModelState.AddModelError("DisplayOrder",
+            //        "the DisplayOrder cannot exactly match the CategroyName");
+            //}
+            //if (newProduct.ProductName.ToLower() == "7")
+            //{
+            //    ModelState.AddModelError("",
+            //        "7 is an invalid value");
+            //}
 
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Add(newCategory);
+                _unitOfWork.Product.Add(newProduct);
                 _unitOfWork.Save();
-                TempData["success"] = "New Category created successfully";
-                return RedirectToAction("Index", "Category");
+                TempData["success"] = "New Product created successfully";
+                return RedirectToAction("Index", "Product");
             }
             return View();
         }
@@ -62,26 +62,26 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
-            //Category? categoryFromDb2 = _appDbContext.Categories.FirstOrDefault(obj=>obj.Id==id);
-            // Category? categoryFromDb3 = _appDbContext.Categories.Where(obj=>obj.Id == id).FirstOrDefault();
-            if (categoryFromDb == null)
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
+            //Product? productFromDb2 = _appDbContext.Categories.FirstOrDefault(obj=>obj.Id==id);
+            // Product? productFromDb3 = _appDbContext.Categories.Where(obj=>obj.Id == id).FirstOrDefault();
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
         [HttpPost]
-        public IActionResult Edit(Category newCategory)
+        public IActionResult Edit(Product newProduct)
         {
 
             if (ModelState.IsValid)
             {
-                string name = newCategory.CategoryName;
-                _unitOfWork.Category.Update(newCategory);
+                string name = newProduct.Title;
+                _unitOfWork.Product.Update(newProduct);
                 _unitOfWork.Save();
                 TempData["success"] = name + " updated successfully";
-                return RedirectToAction("Index", "Category");
+                return RedirectToAction("Index", "Product");
 
 
             }
@@ -94,34 +94,34 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Category? categoryFromDb = _unitOfWork.Category.Get(u => u.Id == id);
+            Product? productFromDb = _unitOfWork.Product.Get(u => u.Id == id);
 
-            if (categoryFromDb == null)
+            if (productFromDb == null)
             {
                 return NotFound();
             }
-            return View(categoryFromDb);
+            return View(productFromDb);
         }
 
         [HttpPost]
-        public IActionResult Delete(Category newCategory)
+        public IActionResult Delete(Product newProduct)
         {
-            string name = newCategory.CategoryName;
-            _unitOfWork.Category.Remove(newCategory);
+            string name = newProduct.Title;
+            _unitOfWork.Product.Remove(newProduct);
             _unitOfWork.Save();
             TempData["success"] = name + " deleted successfully";
-            return RedirectToAction("Index", "Category");
+            return RedirectToAction("Index", "Product");
 
         }
 
         //[HttpPost, ActionName("Delete")]
         //public IActionResult DeletePost(int id)
         //{
-        //    Category? categoryFromDb = _appDbContext.Categories.Find(id);
-        //    _appDbContext.Remove(categoryFromDb);
+        //    Product? productFromDb = _appDbContext.Categories.Find(id);
+        //    _appDbContext.Remove(productFromDb);
         //    _appDbContext.SaveChanges();
-        //    TempData[("success")] = categoryFromDb.CategoryName + "deleted successfully";
-        //    return RedirectToAction("Index", "Category");
+        //    TempData[("success")] = productFromDb.ProductName + "deleted successfully";
+        //    return RedirectToAction("Index", "Product");
 
         //}
     }
