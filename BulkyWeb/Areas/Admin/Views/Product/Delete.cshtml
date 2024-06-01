@@ -10,17 +10,42 @@
     </div>
     <div class="card-body p-4">
         <form method="post">
+            <input asp-for="Id" hidden/>
             <div class="border p-3 mt-4">                
                 @*  <div asp-validation-summary="ModelOnly"></div> *@
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="ProductName" readonly class="form-control border-0 shadow" />
-                    <label asp-for="ProductName" class="ms-2"></label>
+                    <input asp-for="Title" readonly class="form-control border-0 shadow" />
+                    <label asp-for="Title" class="ms-2"></label>
                     @* <input asp-for="ProductName" disabled class="form-control" /> *@
                 </div>
                 <div class="form-floating py-2 col-12">
-                    <input asp-for="DisplayOrder" readonly class="form-control border-0 shadow" />
-                    <label asp-for="DisplayOrder" class="ms-2"></label>
+                    <input asp-for="Description" readonly class="form-control border-0 shadow" />
+                    <label asp-for="Description" class="ms-2"></label>
                     @* <input asp-for="DisplayOrder" disabled class="form-control" /> *@
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ISBN" readonly class="form-control border-0 shadow" />
+                    <label asp-for="ISBN" class="ms-2"></label>                   
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="Author" readonly class="form-control border-0 shadow" />
+                    <label asp-for="Author" class="ms-2"></label>                   
+                </div>
+                <div class="form-floating py-2 col-12">
+                    <input asp-for="ListPrice" readonly class="form-control border-0 shadow" />
+                    <label asp-for="ListPrice" class="ms-2"></label>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="Price" readonly class="form-control border-0 shadow" />
+                        <label asp-for="Price" class="ms-2"></label>
+                    </div>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="Price50" readonly class="form-control border-0 shadow" />
+                        <label asp-for="Price50" class="ms-2"></label>
+                    </div>
+                    <div class="form-floating py-2 col-12">
+                        <input asp-for="Price100" readonly class="form-control border-0 shadow" />
+                        <label asp-for="Price100" class="ms-2"></label>
+                    </div>
                 </div>
                 <div class="row pt-2">
                     <div class="col-6 col-md-3">

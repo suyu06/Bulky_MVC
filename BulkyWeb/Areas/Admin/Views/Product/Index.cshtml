@@ -1,14 +1,14 @@
-﻿@model List<Product>
+﻿@model List<Category>
 
 
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
-            <h2 class="text-primary"> Product List</h2>
+            <h2 class="text-primary"> Category List</h2>
         </div>
         <div class="col-6 text-end">
-            <a asp-controller="Product" asp-action="Create" class="btn btn-primary">
-                <i class="bi bi-plus-circle"></i> Create New Product
+            <a asp-controller="Category" asp-action="Create" class="btn btn-primary">
+                <i class="bi bi-plus-circle"></i> Create New Category
             </a>
         </div>
     </div>
@@ -16,7 +16,7 @@
     <thead>
         <tr>
             <th>
-                Product Name
+                Category Name
             </th>
             <th>
                 Display order
@@ -30,17 +30,17 @@
         @foreach (var obj in Model.OrderByDescending(obj=>obj.DisplayOrder)){
            <tr>
                <td>
-                   @obj.ProductName                   
+                   @obj.CategoryName                   
                </td>
                <td>
                    @obj.DisplayOrder                   
                </td>
                <td>                  
                    <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Product" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i> Edit
                             </a>
-                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2">
                                 <i class="bi bi-trash3"></i> Delete
                             </a>
                    </div>
