@@ -26,6 +26,14 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> objProductList = _unitOfWork.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category
+                .GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.CategoryName,
+                    ValueBuffer = u.Id.ToString
+
+                });
+
             return View(objProductList);
         }
         public IActionResult Create()
@@ -51,7 +59,9 @@ namespace BulkyBookWeb.Areas.Admin.Controllers
                 _unitOfWork.Product.Add(newProduct);
                 _unitOfWork.Save();
                 TempData["success"] = "New Product created successfully";
-                return RedirectToAction("Index", "Product");
+
+                // return RedirectToAction("Index", "Product");
+                return RedirectToAction("Index");
             }
             return View();
         }
